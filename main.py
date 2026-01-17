@@ -9,7 +9,7 @@ import sys
 from modules.inventory import InventoryManager
 from modules.encryption_planner import EncryptionPlanner
 from modules.report_generator import ReportGenerator
-from modules.segmentation_planner import SegmentationPlanner  # <-- ДОБАВИТЬ ЭТОТ ИМПОРТ
+from modules.segmentation_planner import SegmentationPlanner
 
 def show_banner():
     """Показать заголовок программы"""
@@ -134,7 +134,119 @@ def execute_detailed_segmentation_report():
     print("• 3.5. Сквозной контроль трафика")
     print("• Выявленные риски и рекомендации")
 
-# ... остальные функции (execute_encryption_analysis, execute_full_report и т.д.) ...
+def execute_encryption_analysis():
+    """Выполнить анализ шифрования (Этап 2)"""
+    print("\n" + "="*60)
+    print("ЗАПУСК ЭТАПА 2: АНАЛИЗ ШИФРОВАНИЯ")
+    print("="*60)
+    
+    # Загружаем текущую инфраструктуру
+    inventory_manager = InventoryManager()
+    
+    if not inventory_manager.infrastructure["devices"]:
+        print("\n Ошибка: Нет устройств для анализа!")
+        print("Сначала добавьте устройства через Этап 1 (Инвентаризация)")
+        return
+    
+    print(f"\nЗагружено устройств: {len(inventory_manager.infrastructure['devices'])}")
+    
+    # Создаем планировщик шифрования
+    planner = EncryptionPlanner(inventory_manager.infrastructure)
+    
+    # Анализируем инфраструктуру
+    recommendations = planner.analyze_infrastructure()
+    
+    # Показываем краткое содержание
+    planner.print_summary()
+    
+    # Генерируем и сохраняем отчет
+    report_file = planner.save_report_to_file()
+    
+    print("\n" + "="*60)
+    print("АНАЛИЗ ЗАВЕРШЕН!")
+    print(f"Детальный отчет по этапу 2 сохранен в: {report_file}")
+    print("="*60)
+    
+    # Предлагаем просмотреть отчет
+    if input("\nПоказать краткое содержание отчета? (да/нет) [нет]: ").strip().lower() == "да":
+        print("\n" + "="*80)
+        report_text = planner.generate_report()
+        # Показываем только первые 1500 символов
+        print(report_text[:1500])
+        print("\n... (полный отчет в файле)")
+
+def execute_full_report():
+    """Сформировать полный отчет по этапам 1 и 2"""
+    print("\n" + "="*60)
+    print("ФОРМИРОВАНИЕ ПОЛНОГО ОТЧЕТА (ЭТАПЫ 1-2)")
+    print("="*60)
+    
+    # Загружаем текущую инфраструктуру
+    inventory_manager = InventoryManager()
+    
+    if not inventory_manager.infrastructure["devices"]:
+        print("\nОшибка: Нет устройств для анализа!")
+        print("Сначала добавьте устройства через Этап 1 (Инвентаризация)")
+        return
+    
+    print(f"\nЗагружено устройств: {len(inventory_manager.infrastructure['devices'])}")
+    
+    # Создаем генератор отчетов
+    report_gen = ReportGenerator(inventory_manager.infrastructure)
+    
+    # Показываем краткое содержание
+    report_gen.print_summary()
+    
+    # Сохраняем полный отчет
+    report_file = report_gen.save_report()
+    
+    print("\n" + "="*60)
+    print("ОТЧЕТ СФОРМИРОВАН!")
+    print(f"Полный отчет сохранен в: {report_file}")
+    print("="*60)
+    
+    # Предлагаем просмотреть отчет
+    if input("\nПоказать начало отчета? (да/нет) [нет]: ").strip().lower() == "да":
+        print("\n" + "="*80)
+        report_text = report_gen.generate_full_report()
+        # Показываем первые 2000 символов
+        print(report_text[:2000])
+        print("\n... (полный отчет в файле, более 1000 строк)")
+
+def execute_detailed_encryption_report():
+    """Сформировать детальный отчет только по этапу 2"""
+    print("\n" + "="*60)
+    print("ДЕТАЛЬНЫЙ ОТЧЕТ ПО ЭТАПУ 2 (ШИФРОВАНИЕ)")
+    print("="*60)
+    
+    # Загружаем текущую инфраструктуру
+    inventory_manager = InventoryManager()
+    
+    if not inventory_manager.infrastructure["devices"]:
+        print("\nОшибка: Нет устройств для анализа!")
+        print("Сначала добавьте устройства через Этап 1 (Инвентаризация)")
+        return
+    
+    # Создаем планировщик шифрования
+    planner = EncryptionPlanner(inventory_manager.infrastructure)
+    
+    # Анализируем инфраструктуру
+    recommendations = planner.analyze_infrastructure()
+    
+    # Сохраняем детальный отчет
+    report_file = planner.save_report_to_file("encryption_detailed_report.txt")
+    
+    print(f"\n Детальный отчет по этапу 2 сохранен в: {report_file}")
+    print("\nСодержание отчета:")
+    print("• 2.1. Выбор криптостандартов")
+    print("• 2.2. Настройка защищённых каналов")
+    print("• 2.3. Система управления ключами")
+    print("• 2.4. Шифрование хранилищ")
+    print("• Рекомендуемые покупки оборудования")
+    
+    # Предлагаем сформировать еще и полный отчет
+    if input("\nСформировать также полный отчет по этапам 1-2? (да/нет) [нет]: ").strip().lower() == "да":
+        execute_full_report()
 
 def main():
     """Основная функция программы"""
@@ -142,7 +254,7 @@ def main():
         show_banner()
         main_menu()
     except KeyboardInterrupt:
-        print("\nПрограмма прервана пользователя")
+        print("\nПрограмма прервана пользователем")
         sys.exit(0)
     except Exception as e:
         print(f"Ошибка: {e}")
