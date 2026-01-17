@@ -1,0 +1,139 @@
+{
+  "organization": "",
+  "created_at": "2026-01-15T23:04:40.504981",
+  "updated_at": "2026-01-16T23:26:03.170210",
+  "devices": [
+    {
+      "id": 1,
+      "type": "Умная розетка",
+      "category": "Умный дом",
+      "manufacturer": "Xiaomi",
+      "model": "Mi Smart Plug",
+      "ip": "192.168.1.100",
+      "encryption": false,
+      "protocols": [
+        "Wi-Fi"
+      ],
+      "physical_access": false,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 5,
+      "added_at": "2026-01-15T23:06:03.431245"
+    },
+    {
+      "id": 2,
+      "type": "Датчик давления",
+      "category": "Датчики и сенсоры",
+      "manufacturer": "Endress+Hauser",
+      "model": "Cerabar S",
+      "ip": "192.168.1.100",
+      "ports": [
+        502,
+        443
+      ],
+      "protocols": [
+        "Modbus TCP",
+        "HTTPS"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "1",
+      "physical_access": false,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 9,
+      "risk_level": "medium",
+      "replacement_suggestion": "Метран Датчик ДД",
+      "added_at": "2026-01-16T22:38:51.359061",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      }
+    },
+    {
+      "id": 3,
+      "type": "ПЛК (Программируемый логический контроллер)",
+      "category": "Промышленность (ОТ)",
+      "manufacturer": "Siemens",
+      "model": "SIMATIC S7-1200",
+      "ip": "192.168.1.100",
+      "ports": [
+        102,
+        502
+      ],
+      "protocols": [
+        "Нет шифрования"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "средняя",
+      "interaction_group": "1",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 21,
+      "risk_level": "critical",
+      "replacement_suggestion": "ОВЕН ПЛК160",
+      "added_at": "2026-01-16T23:25:40.577398",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Память < 1 Кб, CPU >= 20 МГц - требуется замена устройства",
+        "details": {}
+      }
+    },
+    {
+      "id": 3,
+      "type": "ПЛК (Программируемый логический контроллер)",
+      "category": "Промышленность (ОТ)",
+      "manufacturer": "Siemens",
+      "model": "SIMATIC S7-1200",
+      "ip": "192.168.1.100",
+      "ports": [
+        102,
+        502
+      ],
+      "protocols": [
+        "Нет шифрования"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "средняя",
+      "interaction_group": "1",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 21,
+      "risk_level": "critical",
+      "replacement_suggestion": "ОВЕН ПЛК160",
+      "added_at": "2026-01-16T23:25:40.577398",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Память < 1 Кб, CPU >= 20 МГц - требуется замена устройства",
+        "details": {}
+      }
+    }
+  ],
+  "network_info": {
+    "has_vlan": false,
+    "firewall": "",
+    "mfa_solution": "отсутствует",
+    "monitoring_system": ""
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "HTTP",
+    "category": "иностранный",
+    "encryption": false,
+    "description": "Протокол передачи гипертекста без шифрования"
+  },
+  {
+    "name": "HTTPS",
+    "category": "иностранный",
+    "encryption": true,
+    "description": "Защищенный протокол передачи гипертекста (TLS/SSL)"
+  },
+  {
+    "name": "MQTT",
+    "category": "иностранный",
+    "encryption": false,
+    "description": "Протокол для обмена сообщениями между устройствами IoT"
+  },
+  {
+    "name": "MQTTS",
+    "category": "иностранный",
+    "encryption": true,
+    "description": "MQTT с шифрованием TLS"
+  },
+  {
+    "name": "TCP",
+    "category": "иностранный",
+    "encryption": false,
+    "description": "Протокол управления передачей"
+  },
+  {
+    "name": "UDP",
+    "category": "иностранный",
+    "encryption": false,
+    "description": "Протокол пользовательских датаграмм"
+  },
+  {
+    "name": "SSH",
+    "category": "иностранный",
+    "encryption": true,
+    "description": "Защищенный протокол удаленного доступа"
+  },
+  {
+    "name": "Modbus TCP",
+    "category": "иностранный",
+    "encryption": false,
+    "description": "Промышленный протокол"
+  },
+  {
+    "name": "Modbus TLS",
+    "category": "иностранный",
+    "encryption": true,
+    "description": "Modbus с шифрованием TLS"
+  },
+  {
+    "name": "ГОСТ Р 34.10-2012",
+    "category": "отечественный",
+    "encryption": true,
+    "description": "Российский стандарт электронной подписи"
+  },
+  {
+    "name": "ГОСТ Р 34.11-2012",
+    "category": "отечественный",
+    "encryption": true,
+    "description": "Российский стандарт хэш-функции"
+  },
+  {
+    "name": "ГОСТ Р 34.12-2015 (Кузнечик)",
+    "category": "отечественный",
+    "encryption": true,
+    "description": "Российский блочный шифр"
+  },
+  {
+    "name": "ГОСТ Р 34.13-2015 (Магма)",
+    "category": "отечественный",
+    "encryption": true,
+    "description": "Российский блочный шифр"
+  },
+  {
+    "name": "Нет шифрования",
+    "category": "без шифрования",
+    "encryption": false,
+    "description": "Данные передаются в открытом виде"
+  },
+  {
+    "name": "Другой отечественный",
+    "category": "отечественный",
+    "encryption": true,
+    "description": "Другой отечественный протокол с шифрованием"
+  },
+  {
+    "name": "Другой иностранный",
+    "category": "иностранный",
+    "encryption": true,
+    "description": "Другой иностранный протокол с шифрованием"
+  }
+]
