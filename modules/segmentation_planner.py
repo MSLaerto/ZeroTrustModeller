@@ -35,11 +35,11 @@ class SegmentationPlanner:
         print("="*80)
         
         # Собираем информацию о текущей сети
-        print("\nАНАЛИЗ ТЕКУЩЕЙ СЕТЕВОЙ ТОПОЛОГИИ...")
+        print("\nАнализ текущей сетевой топологии...")
         current_analysis = self._analyze_current_network()
         
         # Генерируем рекомендации по всем подэтапам
-        print("\nГЕНЕРАЦИЯ РЕКОМЕНДАЦИЙ...")
+        print("\nГенерация рекомендаций...")
         
         # 3.1 Устранение концепции доверенных зон
         self._analyze_trust_zones(current_analysis)
@@ -92,7 +92,7 @@ class SegmentationPlanner:
     
     def _analyze_trust_zones(self, current_analysis: Dict):
         """3.1 Устранить концепцию «доверенных зон»"""
-        print("\n[3.1] АНАЛИЗ КОНЦЕПЦИИ ДОВЕРЕННЫХ ЗОН")
+        print("\n[3.1] Анализ концепции доверенных зон")
         print("-"*40)
         
         # Основные принципы устранения доверенных зон
@@ -157,20 +157,17 @@ class SegmentationPlanner:
             {
                 "type": "Программное обеспечение",
                 "name": "Cisco Identity Services Engine (ISE)",
-                "purpose": "Политики доступа на основе контекста",
-                "cost": "от 2,000,000 руб."
+                "purpose": "Политики доступа на основе контекста"
             },
             {
                 "type": "Оборудование",
                 "name": "Palo Alto Networks Next-Gen Firewall",
-                "purpose": "Применение политик на уровне приложений",
-                "cost": "от 1,500,000 руб."
+                "purpose": "Применение политик на уровне приложений"
             },
             {
                 "type": "Решение",
                 "name": "VMware NSX",
-                "purpose": "Микросегментация в программно-определяемых сетях",
-                "cost": "от 3,000,000 руб."
+                "purpose": "Микросегментация в программно-определяемых сетях"
             }
         ]
         
@@ -178,13 +175,12 @@ class SegmentationPlanner:
             self.recommendations["trust_zones_elimination"].append({
                 "type": "Оборудование/ПО",
                 "name": eq["name"],
-                "purpose": eq["purpose"],
-                "cost": eq["cost"]
+                "purpose": eq["purpose"]
             })
     
     def _analyze_minimal_privileges(self, current_analysis: Dict):
         """3.2 Ограничить взаимодействие по принципу минимальных привилегий"""
-        print("\n[3.2] АНАЛИЗ ПРИНЦИПА МИНИМАЛЬНЫХ ПРИВИЛЕГИЙ")
+        print("\n[3.2] Анализ принципа минимальных привелегий")
         print("-"*40)
         
         # Анализируем каждое устройство и его необходимые привилегии
@@ -344,7 +340,7 @@ class SegmentationPlanner:
     
     def _analyze_isolated_segments(self, current_analysis: Dict):
         """3.3 Реализовать изолированные сегменты"""
-        print("\n[3.3] АНАЛИЗ ИЗОЛИРОВАННЫХ СЕГМЕНТОВ")
+        print("\n[3.3] Анализ изолированных сегментов")
         print("-"*40)
         
         # Анализируем текущие сегменты и предлагаем улучшения
@@ -431,18 +427,18 @@ class SegmentationPlanner:
     def _get_isolation_level(self, security_level: SecurityLevel) -> str:
         """Определить уровень изоляции для сегмента"""
         isolation_levels = {
-            SecurityLevel.KII_CRITICAL: "ПОЛНАЯ ФИЗИЧЕСКАЯ ИЗОЛЯЦИЯ",
-            SecurityLevel.KII_HIGH: "ВЫСОКАЯ (логическая + физическая)",
-            SecurityLevel.INDUSTRIAL: "ВЫСОКАЯ (отдельная сеть)",
-            SecurityLevel.CORPORATE: "СРЕДНЯЯ (VLAN + фаервол)",
-            SecurityLevel.IOT_TRUSTED: "СРЕДНЯЯ (VLAN + ограничения)",
-            SecurityLevel.IOT_UNTRUSTED: "ВЫСОКАЯ (DMZ-like)",
-            SecurityLevel.PHYSICAL_ACCESS: "ВЫСОКАЯ (портовая безопасность)",
-            SecurityLevel.GUEST: "НИЗКАЯ (ограниченный доступ)",
-            SecurityLevel.DMZ: "СРЕДНЯЯ (демилитаризованная зона)",
-            SecurityLevel.MANAGEMENT: "ВЫСОКАЯ (строгий контроль)"
+            SecurityLevel.KII_CRITICAL: "Полная физическая изоляция",
+            SecurityLevel.KII_HIGH: "Высокая (логическая + физическая)",
+            SecurityLevel.INDUSTRIAL: "Высокая (отдельная сеть)",
+            SecurityLevel.CORPORATE: "Средняя (VLAN + фаервол)",
+            SecurityLevel.IOT_TRUSTED: "Средняя (VLAN + ограничения)",
+            SecurityLevel.IOT_UNTRUSTED: "Высокая (DMZ-like)",
+            SecurityLevel.PHYSICAL_ACCESS: "Высокая (портовая безопасность)",
+            SecurityLevel.GUEST: "Низкая (ограниченный доступ)",
+            SecurityLevel.DMZ: "Средняя (демилитаризованная зона)",
+            SecurityLevel.MANAGEMENT: "Высокая (строгий контроль)"
         }
-        return isolation_levels.get(security_level, "СРЕДНЯЯ")
+        return isolation_levels.get(security_level, "Средняя")
     
     def _generate_firewall_rules(self, segment: NetworkSegment) -> List[str]:
         """Сгенерировать правила фаервола для сегмента"""
@@ -482,7 +478,7 @@ class SegmentationPlanner:
     
     def _analyze_physical_access(self):
         """3.4 Логически отделить устройства с физическим доступом"""
-        print("\n[3.4] АНАЛИЗ УСТРОЙСТВ С ФИЗИЧЕСКИМ ДОСТУПОМ")
+        print("\n[3.4] Анализ устройств с физическим доступом")
         print("-"*40)
         
         # Находим устройства с физическим доступом
@@ -572,19 +568,19 @@ class SegmentationPlanner:
         device_type = device.get("type", "").lower()
         
         if "банкомат" in device_type or "терминал" in device_type:
-            return "ВЫСОКИЙ (общедоступное место)"
+            return "Высокий (общедоступное место)"
         elif "камера" in device_type and device.get("physical_access", False):
-            return "ВЫСОКИЙ (возможность физического вмешательства)"
+            return "Высокий (возможность физического вмешательства)"
         elif "датчик" in device_type and "уличный" in device_type.lower():
-            return "СРЕДНИЙ (внешняя установка)"
+            return "Средний (внешняя установка)"
         elif "роутер" in device_type or "коммутатор" in device_type:
-            return "СРЕДНИЙ (техническое помещение)"
+            return "Средний (техническое помещение)"
         else:
-            return "НИЗКИЙ (контролируемое помещение)"
+            return "Низкий (контролируемое помещение)"
     
     def _analyze_traffic_inspection(self, current_analysis: Dict):
         """3.5 Настроить сквозной контроль трафика"""
-        print("\n[3.5] АНАЛИЗ СКВОЗНОГО КОНТРОЛЯ ТРАФИКА")
+        print("\n[3.5] Анализ сквозного контроля трафика")
         print("-"*40)
         
         # Анализ текущих возможностей
@@ -595,7 +591,7 @@ class SegmentationPlanner:
         )
         
         analysis = {
-            "current_capabilities": "ОГРАНИЧЕННЫЕ" if not has_advanced_capabilities else "ДОСТАТОЧНЫЕ",
+            "current_capabilities": "Ограниченные" if not has_advanced_capabilities else "Достаточные",
             "recommended_technologies": [],
             "inspection_points": [],
             "implementation_steps": []
@@ -638,7 +634,7 @@ class SegmentationPlanner:
             if segment.security_level in [SecurityLevel.KII_CRITICAL, SecurityLevel.KII_HIGH, SecurityLevel.IOT_UNTRUSTED]:
                 analysis["inspection_points"].append({
                     "segment": segment.name,
-                    "inspection_type": "ПОЛНАЯ ИНСПЕКЦИЯ",
+                    "inspection_type": "Полная инспекция",
                     "recommendations": [
                         f"NGFW между {segment.name} и другими сегментами",
                         "SSL/TLS декрипция для анализа содержимого",
@@ -722,7 +718,7 @@ class SegmentationPlanner:
         """Сгенерировать отчет по этапу 3"""
         report = []
         report.append("\n" + "="*80)
-        report.append("ОТЧЕТ ПО ЭТАПУ 3: СЕГМЕНТАЦИЯ СЕТИ")
+        report.append("ОТЧЕТ ПО ЭТАПУ 3: Сегментация сети")
         report.append("="*80)
         
         # Статистика
@@ -730,13 +726,13 @@ class SegmentationPlanner:
         segments_count = len(self.network_analyzer.topology.segments)
         physical_devices = sum(1 for d in self.devices if d.get("physical_access", False))
         
-        report.append(f"\nОБЩАЯ СТАТИСТИКА:")
+        report.append(f"\nОбщая статистика:")
         report.append(f"  Всего устройств: {total_devices}")
         report.append(f"  Предложено сегментов: {segments_count}")
         report.append(f"  Устройств с физическим доступом: {physical_devices}")
         
         # 3.1 Устранение доверенных зон
-        report.append("\n\n3.1. УСТРАНЕНИЕ КОНЦЕПЦИИ «ДОВЕРЕННЫХ ЗОН»")
+        report.append("\n\n3.1. Устранение концепции «доверенных зон»")
         report.append("-"*60)
         
         for rec in self.recommendations["trust_zones_elimination"][:5]:  # Первые 5
@@ -748,7 +744,7 @@ class SegmentationPlanner:
                     report.append(f"  • {action}")
         
         # 3.2 Минимальные привилегии
-        report.append("\n\n3.2. МИНИМАЛЬНЫЕ ПРИВИЛЕГИИ")
+        report.append("\n\n3.2. Минимальные привилегии")
         report.append("-"*60)
         
         # Показываем примеры для нескольких типов устройств
@@ -770,7 +766,7 @@ class SegmentationPlanner:
                             report.append(f"    • {rule}")
         
         # 3.3 Изолированные сегменты
-        report.append("\n\n3.3. ИЗОЛИРОВАННЫЕ СЕГМЕНТЫ")
+        report.append("\n\n3.3. Изолированные сегменты")
         report.append("-"*60)
         
         for segment in self.network_analyzer.topology.segments[:4]:  # Первые 4 сегмента
@@ -787,7 +783,7 @@ class SegmentationPlanner:
                     report.append(f"    • {rule}")
         
         # 3.4 Физический доступ
-        report.append("\n\n3.4. ИЗОЛЯЦИЯ УСТРОЙСТВ С ФИЗИЧЕСКИМ ДОСТУПОМ")
+        report.append("\n\n3.4. Изоляция устройств с физическим доступом")
         report.append("-"*60)
         
         physical_devices_list = [d for d in self.devices if d.get("physical_access", False)]
@@ -805,7 +801,7 @@ class SegmentationPlanner:
             report.append("\nУстройства с физическим доступом не обнаружены")
         
         # 3.5 Сквозной контроль трафика
-        report.append("\n\n3.5. СКВОЗНОЙ КОНТРОЛЬ ТРАФИКА")
+        report.append("\n\n3.5. Сквозной контроль трафика")
         report.append("-"*60)
         
         inspection = self.recommendations.get("traffic_inspection", {})
@@ -824,7 +820,7 @@ class SegmentationPlanner:
                     report.append(f"    • {action}")
         
         # Выявленные риски
-        report.append("\n\nВЫЯВЛЕННЫЕ РИСКИ БЕЗОПАСНОСТИ")
+        report.append("\n\nВыявленные риски безопасности")
         report.append("-"*60)
         
         risks = self.recommendations.get("security_risks", [])
@@ -836,7 +832,7 @@ class SegmentationPlanner:
             report.append("\nКритических рисков не обнаружено")
         
         # Нормативные требования
-        report.append("\n\nНОРМАТИВНЫЕ ТРЕБОВАНИЯ К СЕГМЕНТАЦИИ")
+        report.append("\n\nНормативные требования к сегментации")
         report.append("-"*60)
         report.append("• ФСТЭК Приказ №239: Требования к разделению сетей")
         report.append("• ГОСТ Р 57580.1-2017: Сегментация сетей КИИ")
@@ -845,7 +841,7 @@ class SegmentationPlanner:
         report.append("• ISO/IEC 27033: Безопасность сетевой инфраструктуры")
         
         # Ориентировочная стоимость
-        report.append("\n\nОРИЕНТИРОВОЧНАЯ СТОИМОСТЬ ВНЕДРЕНИЯ")
+        report.append("\n\nОриентировочная стоимость внедрения")
         report.append("-"*60)
         report.append("• Оборудование (NGFW, коммутаторы): от 2,000,000 руб.")
         report.append("• Программное обеспечение: от 1,500,000 руб.")
@@ -873,32 +869,32 @@ class SegmentationPlanner:
     def print_summary(self):
         """Вывести краткое содержание"""
         print("\n" + "="*80)
-        print("КРАТКОЕ СОДЕРЖАНИЕ РЕКОМЕНДАЦИЙ ПО СЕГМЕНТАЦИИ")
+        print("Краткое содержание рекомендаций по сегментации")
         print("="*80)
         
         segments = self.network_analyzer.topology.segments
         physical_devices = sum(1 for d in self.devices if d.get("physical_access", False))
         
-        print(f"\nСТАТИСТИКА:")
+        print(f"\nСтатистика:")
         print(f"  Всего устройств: {len(self.devices)}")
         print(f"  Предложено сегментов: {len(segments)}")
         print(f"  Устройств с физическим доступом: {physical_devices}")
         
-        print(f"\nКЛЮЧЕВЫЕ СЕГМЕНТЫ:")
+        print(f"\nКлючевые сегменты:")
         for segment in segments[:3]:  # Первые 3 сегмента
             print(f"  • {segment.name}: {len(segment.device_ids)} устройств, "
                   f"уровень: {segment.security_level.value}")
         
-        print(f"\nКРИТИЧЕСКИЕ РИСКИ:")
+        print(f"\nКритические риски:")
         risks = self.recommendations.get("security_risks", [])
-        critical_risks = [r for r in risks if r["type"] == "КРИТИЧЕСКИЙ"]
+        critical_risks = [r for r in risks if r["type"] == "Критический"]
         if critical_risks:
             for risk in critical_risks[:2]:
                 print(f"  • {risk['description'][:80]}...")
         else:
             print("  Не обнаружено")
         
-        print(f"\nОСНОВНЫЕ РЕКОМЕНДАЦИИ:")
+        print(f"\nОсновные рекомендации:")
         print("  1. Внедрить микросегментацию на основе Zero Trust")
         print("  2. Установить NGFW между критическими сегментами")
         print("  3. Реализовать 802.1X для устройств с физическим доступом")

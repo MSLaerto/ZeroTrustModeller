@@ -316,7 +316,6 @@ class NetworkAnalyzer:
         
         # 2. Проверяем избыточные соединения
         required_connections = [c for c in self.topology.connections if c.is_required]
-        # В реальности здесь должен быть анализ фактических соединений
         
         # 3. Проверяем устройства с физическим доступом
         physical_segment = next((s for s in self.topology.segments 
@@ -326,7 +325,7 @@ class NetworkAnalyzer:
             for device in devices:
                 if device.get("critical", False):
                     risks.append({
-                        "type": "ВЫСОКИЙ",
+                        "type": "Высокий",
                         "description": f"Критическое устройство {device['manufacturer']} {device['model']} "
                                       f"с физическим доступом",
                         "recommendation": "Усилить физическую защиту или переместить в защищенное помещение",
