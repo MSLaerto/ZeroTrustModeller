@@ -1,0 +1,747 @@
+{
+  "organization": "Тестовая Организация «Умный Город»",
+  "created_at": "2025-03-15T10:30:00",
+  "updated_at": "2026-01-17T14:46:32.796691",
+  "devices": [
+    {
+      "id": 1,
+      "type": "IP-камера",
+      "category": "Видеонаблюдение",
+      "manufacturer": "Hikvision",
+      "model": "DS-2CD2042WD-I",
+      "ip": "192.168.1.100",
+      "ports": [
+        80,
+        554,
+        8000
+      ],
+      "protocols": [
+        "HTTP",
+        "RTSP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "высокая",
+      "interaction_group": "video_surveillance",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 1,
+      "risk_level": "high",
+      "added_at": "2025-03-15T10:00:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Память < 2 Кб, CPU >= 20 МГц - требуется замена устройства",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Память < 2 Кб, CPU >= 20 МГц - требуется замена устройства"
+    },
+    {
+      "id": 2,
+      "type": "Датчик температуры",
+      "category": "Датчики и сенсоры",
+      "manufacturer": "Овен",
+      "model": "ТСМ-50",
+      "ip": "192.168.1.101",
+      "ports": [
+        1883,
+        502
+      ],
+      "protocols": [
+        "MQTT",
+        "Modbus TCP"
+      ],
+      "encryption": true,
+      "kii_category": 1,
+      "uses_domestic_algorithm": true,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "environment_monitoring",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 2,
+      "risk_level": "low",
+      "added_at": "2025-03-15T10:05:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик/Магма",
+        "replacement_needed": false,
+        "reason": "Устройство КИИ 1-2 категории требует отечественных алгоритмов",
+        "details": {
+          "kii_check": "КИИ 1-2 категории"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "Маршрутизатор",
+      "category": "Сетевое оборудование",
+      "manufacturer": "MikroTik",
+      "model": "hEX",
+      "ip": "192.168.1.1",
+      "ports": [
+        22,
+        443,
+        8291
+      ],
+      "protocols": [
+        "SSH",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "высокая",
+      "interaction_group": "network_infrastructure",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 3,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T10:10:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Память < 4 Кб, CPU >= 50 МГц",
+        "details": {}
+      }
+    },
+    {
+      "id": 4,
+      "type": "ПЛК (Программируемый логический контроллер)",
+      "category": "Промышленность (ОТ)",
+      "manufacturer": "Siemens",
+      "model": "SIMATIC S7-1200",
+      "ip": "192.168.1.150",
+      "ports": [
+        102,
+        502
+      ],
+      "protocols": [
+        "Modbus TLS",
+        "ГОСТ Р 34.12-2015 (Кузнечик)"
+      ],
+      "encryption": true,
+      "kii_category": 2,
+      "uses_domestic_algorithm": true,
+      "can_change_protocols": "нет",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "industrial_control",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 4,
+      "risk_level": "critical",
+      "added_at": "2025-03-15T10:15:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик/Магма",
+        "replacement_needed": false,
+        "reason": "Устройство КИИ 1-2 категории требует отечественных алгоритмов",
+        "details": {
+          "kii_check": "КИИ 1-2 категории"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "Умная розетка",
+      "category": "Умный дом",
+      "manufacturer": "Xiaomi",
+      "model": "Mi Smart Plug",
+      "ip": "192.168.1.50",
+      "ports": [
+        80
+      ],
+      "protocols": [
+        "TCP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "smart_home",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 5,
+      "risk_level": "high",
+      "added_at": "2025-03-15T10:20:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена"
+    },
+    {
+      "id": 6,
+      "type": "Видеорегистратор",
+      "category": "Видеонаблюдение",
+      "manufacturer": "Dahua",
+      "model": "NVR4108-8P-4KS2",
+      "ip": "192.168.1.200",
+      "ports": [
+        443,
+        554,
+        37777
+      ],
+      "protocols": [
+        "HTTPS",
+        "RTSP"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "высокая",
+      "interaction_group": "video_storage",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 6,
+      "risk_level": "high",
+      "added_at": "2025-03-15T10:25:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Память < 4 Кб, CPU >= 50 МГц",
+        "details": {}
+      }
+    },
+    {
+      "id": 7,
+      "type": "Датчик движения",
+      "category": "Датчики и сенсоры",
+      "manufacturer": "Schneider Electric",
+      "model": "CCT71111",
+      "ip": "192.168.1.102",
+      "ports": [
+        502
+      ],
+      "protocols": [
+        "TCP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "security_sensors",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 7,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T10:30:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена"
+    },
+    {
+      "id": 8,
+      "type": "Коммутатор",
+      "category": "Сетевое оборудование",
+      "manufacturer": "Cisco",
+      "model": "Catalyst 2960",
+      "ip": "192.168.1.2",
+      "ports": [
+        22,
+        443
+      ],
+      "protocols": [
+        "SSH",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "высокая",
+      "interaction_group": "network_infrastructure",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 8,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T10:35:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Память < 4 Кб, CPU >= 50 МГц",
+        "details": {}
+      }
+    },
+    {
+      "id": 9,
+      "type": "IP-камера",
+      "category": "Видеонаблюдение",
+      "manufacturer": "Элвис-Нео",
+      "model": "К-200",
+      "ip": "192.168.1.105",
+      "ports": [
+        443,
+        554
+      ],
+      "protocols": [
+        "ГОСТ Р 34.12-2015 (Кузнечик)",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": true,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "высокая",
+      "interaction_group": "video_surveillance",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 9,
+      "risk_level": "low",
+      "added_at": "2025-03-15T10:40:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Уже используется отечественный алгоритм",
+        "replacement_needed": false,
+        "reason": "Устройство уже использует отечественный алгоритм шифрования",
+        "details": {
+          "encryption_check": "Использует отечественный алгоритм"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": "Датчик давления",
+      "category": "Датчики и сенсоры",
+      "manufacturer": "Endress+Hauser",
+      "model": "Cerabar S",
+      "ip": "192.168.1.155",
+      "ports": [
+        502,
+        443
+      ],
+      "protocols": [
+        "Modbus TCP",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 3,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "industrial_sensors",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 10,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T10:45:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена"
+    },
+    {
+      "id": 11,
+      "type": "Банкомат",
+      "category": "Банковское оборудование",
+      "manufacturer": "NCR",
+      "model": "SelfServ 84",
+      "ip": "192.168.2.100",
+      "ports": [
+        443,
+        9000
+      ],
+      "protocols": [
+        "HTTPS",
+        "TCP"
+      ],
+      "encryption": true,
+      "kii_category": 2,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "financial",
+      "physical_access": true,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 36,
+      "risk_level": "critical",
+      "added_at": "2025-03-15T10:50:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик/Магма",
+        "replacement_needed": false,
+        "reason": "Устройство КИИ 1-2 категории требует отечественных алгоритмов",
+        "details": {
+          "kii_check": "КИИ 1-2 категории"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "GPS-трекер",
+      "category": "Транспорт и логистика",
+      "manufacturer": "Teltonika",
+      "model": "FMB001",
+      "ip": "192.168.3.100",
+      "ports": [
+        80,
+        443
+      ],
+      "protocols": [
+        "TCP",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "vehicle_tracking",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 31,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T10:55:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена"
+    },
+    {
+      "id": 13,
+      "type": "Инфузионный насос",
+      "category": "Медицинское оборудование",
+      "manufacturer": "Baxter",
+      "model": "Sigma Spectrum",
+      "ip": "192.168.4.100",
+      "ports": [
+        80
+      ],
+      "protocols": [
+        "TCP"
+      ],
+      "encryption": false,
+      "kii_category": 1,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "medical",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 26,
+      "risk_level": "critical",
+      "added_at": "2025-03-15T11:00:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик/Магма",
+        "replacement_needed": false,
+        "reason": "Устройство КИИ 1-2 категории требует отечественных алгоритмов",
+        "details": {
+          "kii_check": "КИИ 1-2 категории"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": "Умный счетчик электроэнергии",
+      "category": "Энергетика",
+      "manufacturer": "Landis+Gyr",
+      "model": "E850",
+      "ip": "192.168.5.100",
+      "ports": [
+        443,
+        4059
+      ],
+      "protocols": [
+        "DLMS/COSEM",
+        "HTTPS"
+      ],
+      "encryption": true,
+      "kii_category": 2,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "energy",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 41,
+      "risk_level": "critical",
+      "added_at": "2025-03-15T11:05:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик/Магма",
+        "replacement_needed": false,
+        "reason": "Устройство КИИ 1-2 категории требует отечественных алгоритмов",
+        "details": {
+          "kii_check": "КИИ 1-2 категории"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": "Принтер",
+      "category": "Другое",
+      "manufacturer": "HP",
+      "model": "LaserJet Pro MFP",
+      "ip": "192.168.1.210",
+      "ports": [
+        80,
+        9100
+      ],
+      "protocols": [
+        "HTTP",
+        "TCP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "office",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 46,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T11:10:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Объем данных > 1 Кб/с, память >= 1 Кб",
+        "details": {}
+      }
+    },
+    {
+      "id": 16,
+      "type": "Межсетевой экран",
+      "category": "Сетевое оборудование",
+      "manufacturer": "Fortinet",
+      "model": "FortiGate 60F",
+      "ip": "192.168.1.254",
+      "ports": [
+        443,
+        22
+      ],
+      "protocols": [
+        "HTTPS",
+        "SSH"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "высокая",
+      "memory": "высокая",
+      "data_volume": "высокая",
+      "interaction_group": "network_security",
+      "physical_access": false,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 13,
+      "risk_level": "high",
+      "added_at": "2025-03-15T11:15:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Магма",
+        "replacement_needed": false,
+        "reason": "Память >= 4 Кб, CPU >= 100 МГц",
+        "details": {}
+      }
+    },
+    {
+      "id": 17,
+      "type": "Умный термостат",
+      "category": "Умный дом",
+      "manufacturer": "Nest",
+      "model": "Learning Thermostat 3",
+      "ip": "192.168.1.51",
+      "ports": [
+        443,
+        1883
+      ],
+      "protocols": [
+        "HTTPS",
+        "MQTT"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "smart_home",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 18,
+      "risk_level": "medium",
+      "added_at": "2025-03-15T11:20:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Объем данных > 1 Кб/с, память >= 1 Кб",
+        "details": {}
+      }
+    },
+    {
+      "id": 18,
+      "type": "POS-терминал",
+      "category": "Банковское оборудование",
+      "manufacturer": "Ingenico",
+      "model": "iCT250",
+      "ip": "192.168.2.101",
+      "ports": [
+        443,
+        8443
+      ],
+      "protocols": [
+        "HTTPS",
+        "TCP"
+      ],
+      "encryption": true,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "нет",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "financial",
+      "physical_access": true,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 37,
+      "risk_level": "critical",
+      "added_at": "2025-03-15T11:25:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Объем данных > 1 Кб/с, память >= 1 Кб",
+        "details": {}
+      }
+    },
+    {
+      "id": 19,
+      "type": "Сенсорный терминал",
+      "category": "Промышленность (ОТ)",
+      "manufacturer": "Weintek",
+      "model": "cMT Series",
+      "ip": "192.168.1.151",
+      "ports": [
+        80,
+        502
+      ],
+      "protocols": [
+        "HTTP",
+        "Modbus TCP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "средняя",
+      "memory": "средняя",
+      "data_volume": "средняя",
+      "interaction_group": "industrial_hmi",
+      "physical_access": true,
+      "critical": true,
+      "added_from_catalog": true,
+      "catalog_id": 23,
+      "risk_level": "high",
+      "added_at": "2025-03-15T11:30:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Кузнечик",
+        "replacement_needed": false,
+        "reason": "Объем данных > 1 Кб/с, память >= 1 Кб",
+        "details": {}
+      }
+    },
+    {
+      "id": 20,
+      "type": "Метеостанция",
+      "category": "Другое",
+      "manufacturer": "Davis Instruments",
+      "model": "Vantage Pro2",
+      "ip": "192.168.1.220",
+      "ports": [
+        80
+      ],
+      "protocols": [
+        "HTTP",
+        "TCP"
+      ],
+      "encryption": false,
+      "kii_category": 0,
+      "uses_domestic_algorithm": false,
+      "can_change_protocols": "да",
+      "compute_power": "низкая",
+      "memory": "низкая",
+      "data_volume": "низкая",
+      "interaction_group": "environment",
+      "physical_access": true,
+      "critical": false,
+      "added_from_catalog": true,
+      "catalog_id": 49,
+      "risk_level": "low",
+      "added_at": "2025-03-15T11:35:00",
+      "encryption_recommendation": {
+        "recommended_algorithm": "Present80",
+        "replacement_needed": true,
+        "reason": "Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена",
+        "details": {}
+      },
+      "replacement_suggestion": "Требуется замена: Мало данных, память < 1 Кб, CPU >= 20 МГц - требуется замена"
+    }
+  ],
+  "network_info": {
+    "has_vlan": false,
+    "firewall": "FortiGate 60F",
+    "mfa_solution": "отсутствует",
+    "monitoring_system": "Zabbix"
+  }
+}

@@ -269,10 +269,10 @@ class ReportGenerator:
         """Сгенерировать полный отчет по всем этапам"""
         report = []
 
-        # Рассчитываем ZTI
+        # Рассчитываем RZT
         zti_analysis = self.calculate_zti_analysis()
         
-        # Добавляем ZTI отчет в начало
+        # Добавляем RZT отчет в начало
         report.append(ZTICalculator.generate_zti_report(
             zti_analysis["initial"],
             zti_analysis["stages"],
@@ -457,11 +457,11 @@ class ReportGenerator:
         print("Полный отчет доступен в файле (более 1000 строк)")
 
     def calculate_zti_analysis(self) -> Dict:
-        """Рассчитать анализ ZTI для всех этапов"""
-        # Исходный ZTI
+        """Рассчитать анализ RZT для всех этапов"""
+        # Исходный RZT
         initial_zti = ZTICalculator.calculate_initial_zti(self.devices)
         
-        # ZTI по этапам
+        # RZT по этапам
         stage_zti_list = []
         
         # Этап 2: Шифрование
@@ -496,7 +496,7 @@ class ReportGenerator:
         )
         stage_zti_list.append(monitoring_zti)
         
-        # Итоговый ZTI
+        # Итоговый RZT
         final_zti = ZTICalculator.calculate_final_zti(self.devices)
         
         return {

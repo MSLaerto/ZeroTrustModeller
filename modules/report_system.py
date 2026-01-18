@@ -30,11 +30,11 @@ class ReportSystem:
         self._segmentation_recommendations = None
     
     def calculate_zti_analysis(self) -> Dict:
-        """Рассчитать анализ ZTI для всех этапов"""
-        # Исходный ZTI
+        """Рассчитать анализ RZT для всех этапов"""
+        # Исходный RZT
         initial_zti = ZTICalculator.calculate_initial_zti(self.devices)
         
-        # ZTI по этапам
+        # RZT по этапам
         stage_zti_list = []
         
         # Этап 2: Шифрование
@@ -69,7 +69,7 @@ class ReportSystem:
         )
         stage_zti_list.append(monitoring_zti)
         
-        # Итоговый ZTI
+        # Итоговый RZT
         final_zti = ZTICalculator.calculate_final_zti(self.devices)
         
         return {
@@ -657,8 +657,7 @@ class ReportSystem:
 
         # Титульная страница
         report.append("="*80)
-        report.append("ПОЛНЫЙ ОТЧЕТ ПО ВНЕДРЕНИЮ МОДЕЛИ ZERO TRUST")
-        report.append("ДЛЯ ИНТЕРНЕТА ВЕЩЕЙ (IoT)")
+        report.append("ПОЛНЫЙ ПЛАН ПО ВНЕДРЕНИЮ МОДЕЛИ ZERO TRUST")
         report.append("="*80)
         
         report.append(f"\nОсновная информация")
@@ -765,10 +764,10 @@ class ReportSystem:
         for line in conclusion:
             report.append(f"  {line}")
         
-                # Рассчитываем ZTI
+                # Рассчитываем RZT
         zti_analysis = self.calculate_zti_analysis()
         
-        # Добавляем ZTI отчет в начало
+        # Добавляем RZT отчет в начало
         report.append(ZTICalculator.generate_zti_report(
             zti_analysis["initial"],
             zti_analysis["stages"],

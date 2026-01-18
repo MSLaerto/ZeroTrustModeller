@@ -1,5 +1,5 @@
 """
-Модуль для расчета индекса внедрения Zero Trust (ZTI)
+Модуль для расчета индекса внедрения Zero Trust (RZT)
 """
 
 from typing import Dict, List, Tuple
@@ -10,7 +10,7 @@ class ZTICalculator:
     
     @staticmethod
     def calculate_initial_zti(devices: List[Dict]) -> Dict:
-        """Рассчитать исходный ZTI до внедрения рекомендаций"""
+        """Рассчитать исходный RZT до внедрения рекомендаций"""
         total_devices = len(devices)
         if total_devices == 0:
             return {
@@ -41,7 +41,7 @@ class ZTICalculator:
         # 4. Уровень многофакторной аутентификации (MFA) - изначально 0
         mfa_percentage = 0
         
-        # Расчет ZTI по формуле: (0.3*SE + 0.3*MFA + 0.2*E + 0.2*(100%-IM))/100
+        # Расчет RZT по формуле: (0.3*SE + 0.3*MFA + 0.2*E + 0.2*(100%-IM))/100
         zti_score = (
             0.3 * segmentation_percentage +
             0.3 * mfa_percentage +
@@ -67,7 +67,7 @@ class ZTICalculator:
         stage: str,
         stage_data: Dict = None
     ) -> Dict:
-        """Рассчитать ZTI после конкретного этапа"""
+        """Рассчитать RZT после конкретного этапа"""
         total_devices = len(devices)
         
         # Базовые компоненты
@@ -112,7 +112,7 @@ class ZTICalculator:
             mfa_percentage = 90
             import_percentage = max(0, import_percentage - 5)
         
-        # Расчет ZTI
+        # Расчет RZT
         zti_score = (
             0.3 * segmentation_percentage +
             0.3 * mfa_percentage +
@@ -135,43 +135,39 @@ class ZTICalculator:
     
     @staticmethod
     def calculate_final_zti(devices: List[Dict]) -> Dict:
-        """Рассчитать итоговый ZTI после всех рекомендаций"""
+        """Рассчитать итоговый RZT после всех рекомендаций"""
         total_devices = len(devices)
         
         # Оптимистичный сценарий после всех этапов
         domestic_manufacturers = ["Овен", "Элвис-Нео", "Ростелеком", "Болид", "Киберлок", "Рутокен", "КриптоПро"]
         
         # После всех этапов:
-        # 1. Шифрование на 95% устройств
+        # 1. Шифрование
         encrypted_count = sum(1 for d in devices if d.get("encryption", False))
-        base_encryption = (encrypted_count / total_devices) * 100
-        encryption_percentage = min(95, base_encryption + 60)
-        
-        # 2. Сегментация на 90%
-        encrypted_count = sum(1 for d in devices if d.get("encryption", False))
-        base_encryption = (encrypted_count / total_devices) * 100
-        segmentation_percentage = min(95, base_encryption + 60)
+        encryption_percentage = min(95, round((encrypted_count + sum(1 for d in devices if d.get("critical", True)) / total_devices) * 100, 2))
 
-        segmentation_percentage = 95
-        
-        # 3. MFA на 85%
-        mfa_percentage = 90
-        
-        # 4. Импортные устройства сокращены на 50%
+        # 2. Сегментация
+        segmentation_count = sum(1 for d in devices if d.get("encryption", False))
+        segmentation_percentage = min(90, round(segmentation_count + 3 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False))*2 + sum(1 for d in devices if d.get("critical", True)*2) / total_devices * 100, 2))
+
+        # 3. MFA
+        mfa_count = sum(1 for d in devices if d.get("encryption", False))
+        # Убираем нетребующие MFA механизмы
+        # Округляем до целого числа устройств
+        mfa_percentage = min(100, (round((mfa_count + round(total_devices*0.2,0) / total_devices) + sum(1 for d in devices if d.get("critical", True))* 2 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False)), 2)) + 20)
+
+        # 4. Доля импортных устройств
         import_count = sum(1 for d in devices 
-                          if d.get("manufacturer") not in domestic_manufacturers)
-        base_import = (import_count / total_devices) * 100
-        import_percentage = max(0, base_import - 50)
+                        if d.get("manufacturer") not in domestic_manufacturers)
+        import_percentage = max(0, round(((max(import_count*0.5 - 3,0 ))/ total_devices) * 100, 2))
         
-        # Расчет итогового ZTI
+        # Расчет итогового RZT
         zti_score = (
             0.3 * segmentation_percentage +
             0.3 * mfa_percentage +
             0.2 * encryption_percentage +
             0.2 * (100 - import_percentage)
         ) / 100
-        
-        # Обеспечиваем, что ZTI будет в диапазоне 0.8-0.85
         
         return {
             "zti_score": zti_score,
@@ -188,28 +184,28 @@ class ZTICalculator:
     
     @staticmethod
     def _get_zti_assessment(zti_score: float) -> str:
-        """Получить оценку уровня ZTI"""
+        """Получить оценку уровня RZT"""
         if zti_score >= 0.8:
             return "ОТЛИЧНО - полное соответствие модели Zero Trust"
-        elif zti_score >= 0.65:
+        elif zti_score >= 0.7:
             return "ХОРОШО - высокий уровень безопасности"
-        elif zti_score >= 0.5:
+        elif zti_score >= 0.6:
             return "УДОВЛЕТВОРИТЕЛЬНО - базовый уровень Zero Trust"
-        elif zti_score >= 0.3:
+        elif zti_score >= 0.5:
             return "НИЗКИЙ - требуются значительные улучшения"
         else:
             return "КРИТИЧЕСКИЙ - срочное внедрение мер безопасности"
     
     @staticmethod
     def _get_final_recommendations(zti_score: float) -> List[str]:
-        """Получить рекомендации по итоговому ZTI"""
-        if zti_score >= 0.85:
+        """Получить рекомендации по итоговому RZT"""
+        if zti_score >= 0.8:
             return [
                 "Поддерживайте текущий уровень безопасности",
                 "Регулярно проводите аудит и тестирование на проникновение",
                 "Обновляйте политики безопасности в соответствии с новыми угрозами"
             ]
-        elif zti_score >= 0.75:
+        elif zti_score >= 0.7:
             return [
                 "Увеличьте долю отечественного оборудования",
                 "Внедрите MFA на всех административных интерфейсах",

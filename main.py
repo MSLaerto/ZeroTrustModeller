@@ -25,14 +25,14 @@ def show_banner():
 def show_zti_analysis():
     """Показать анализ индекса Zero Trust"""
     print("\n" + "="*80)
-    print("АНАЛИЗ ИНДЕКСА ВНЕДРЕНИЯ ZERO TRUST (ZTI)")
+    print("АНАЛИЗ ИНДЕКСА ВНЕДРЕНИЯ ZERO TRUST (RZT)")
     print("="*80)
     
     # Загружаем инфраструктуру
     inventory_manager = InventoryManager()
     
     if not inventory_manager.infrastructure["devices"]:
-        print("\n❌ Ошибка: Нет устройств для анализа!")
+        print("\nОшибка: Нет устройств для анализа!")
         print("Сначала добавьте устройства через Этап 1 (Инвентаризация)")
         return
 
@@ -41,20 +41,20 @@ def show_zti_analysis():
     initial_zti = ZTICalculator.calculate_initial_zti(devices)
     final_zti = ZTICalculator.calculate_final_zti(devices)
     
-    print(f"\n📊 ИСХОДНЫЙ ZTI:")
+    print(f"\nИСХОДНЫЙ RZT:")
     print(f"  Индекс: {initial_zti['zti_percentage']:.1f}% ({initial_zti['zti_score']:.3f})")
     
-    print(f"\n📈 ПРОГНОЗИРУЕМЫЙ ZTI ПОСЛЕ ВНЕДРЕНИЯ:")
+    print(f"\nПРОГНОЗИРУЕМЫЙ RZT ПОСЛЕ ВНЕДРЕНИЯ:")
     print(f"  Индекс: {final_zti['zti_percentage']:.1f}% ({final_zti['zti_score']:.3f})")
     print(f"  Оценка: {final_zti['assessment']}")
     
-    print(f"\n📋 КОМПОНЕНТЫ ZTI:")
+    print(f"\nКОМПОНЕНТЫ RZT:")
     print(f"  • Шифрование (E): {initial_zti['components']['encryption']:.1f}% → {final_zti['components']['encryption']:.1f}%")
     print(f"  • Импортные устройства (IM): {initial_zti['components']['import_devices']:.1f}% → {final_zti['components']['import_devices']:.1f}%")
     print(f"  • Сегментация (SE): {initial_zti['components']['segmentation']:.1f}% → {final_zti['components']['segmentation']:.1f}%")
     print(f"  • MFA: {initial_zti['components']['mfa']:.1f}% → {final_zti['components']['mfa']:.1f}%")
     
-    print(f"\n💡 ОСНОВНЫЕ МЕРЫ ДЛЯ ПОВЫШЕНИЯ ZTI:")
+    print(f"\nОСНОВНЫЕ МЕРЫ ДЛЯ ПОВЫШЕНИЯ RZT:")
     for rec in final_zti.get('recommendations', []):
         print(f"  • {rec}")
     

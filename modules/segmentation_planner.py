@@ -754,7 +754,7 @@ class SegmentationPlanner:
                 device_type = rec["type"]
                 if device_type not in device_types_shown:
                     device_types_shown.add(device_type)
-                    report.append(f"\n📱 {device_type}:")
+                    report.append(f"\n {device_type}:")
                     report.append(f"  Устройство: {rec['device']}")
                     if rec.get("required_privileges"):
                         report.append("  Необходимые привилегии:")
