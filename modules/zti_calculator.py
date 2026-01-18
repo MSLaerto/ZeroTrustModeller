@@ -148,13 +148,13 @@ class ZTICalculator:
 
         # 2. Сегментация
         segmentation_count = sum(1 for d in devices if d.get("encryption", False))
-        segmentation_percentage = min(90, round(segmentation_count + 3 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False))*2 + sum(1 for d in devices if d.get("critical", True)*2) / total_devices * 100, 2))
+        segmentation_percentage = min(90, round(segmentation_count + 3 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False))*2 + sum(1 for d in devices if d.get("critical", True)*2) / total_devices * 100, 2) + 10)
 
         # 3. MFA
         mfa_count = sum(1 for d in devices if d.get("encryption", False))
         # Убираем нетребующие MFA механизмы
         # Округляем до целого числа устройств
-        mfa_percentage = min(100, (round((mfa_count + round(total_devices*0.2,0) / total_devices) + sum(1 for d in devices if d.get("critical", True))* 2 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False)), 2)) + 20)
+        mfa_percentage = min(100, (round((mfa_count + round(total_devices*0.2,0) / total_devices) + sum(1 for d in devices if d.get("critical", True))* 2 + sum(1 for d in devices if d.get("uses_domestic_algorithm", False)), 2)) + 30)
 
         # 4. Доля импортных устройств
         import_count = sum(1 for d in devices 
