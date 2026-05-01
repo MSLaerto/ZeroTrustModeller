@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
 ZeroTrustModeller - Программа для моделирования внедрения Zero Trust в IoT
+Версия с поддержкой автоматического сканирования сети через Nmap
 """
 
 import os
 import sys
+import subprocess
 from datetime import datetime
 
 from modules.inventory import InventoryManager
@@ -19,6 +21,7 @@ def show_banner():
     print("=" * 60)
     print("ZeroTrustModeller - Моделирование Zero Trust для IoT")
     print("Адаптировано под требования ФСТЭК и российские стандарты")
+    print("Версия с поддержкой автоматического сканирования сети (nmap)")
     print("=" * 60)
 
 
@@ -36,7 +39,6 @@ def show_zti_analysis():
         print("Сначала добавьте устройства через Этап 1 (Инвентаризация)")
         return
 
-    
     devices = inventory_manager.infrastructure["devices"]
     initial_zti = ZTICalculator.calculate_initial_zti(devices)
     final_zti = ZTICalculator.calculate_final_zti(devices)
@@ -60,6 +62,51 @@ def show_zti_analysis():
     
     print(f"\n" + "="*80)
 
+
+def execute_nmap_scan():
+    """Запустить автоматическое сканирование сети через Nmap и импортировать результаты"""
+    print("\n" + "="*80)
+    print("СКАНИРОВАНИЕ СЕТИ ЧЕРЕЗ Nmap")
+    print("="*80)
+    print("\nВНИМАНИЕ: Для работы требуется установленный Nmap и права администратора.")
+    print("На Windows запускайте программу от имени администратора.")
+    print("На Linux/macOS используйте sudo.\n")
+    
+    ip_range = input("Введите диапазон IP для сканирования (например, 192.168.1.0/24): ").strip()
+    if not ip_range:
+        print("Диапазон не указан. Возврат в главное меню.")
+        return
+    
+    # Проверяем, существует ли скрипт nmap_scanner.py в текущей директории
+    scanner_path = os.path.join(os.path.dirname(__file__), "modules/nmap_scanner.py")
+    if not os.path.exists(scanner_path):
+        print(f"Ошибка: файл {scanner_path} не найден.")
+        print("Убедитесь, что nmap_scanner.py находится в той же папке, что и main.py")
+        return
+    
+    # Формируем команду
+    cmd = [sys.executable, scanner_path, ip_range, "--merge"]
+    print(f"\nЗапуск: {' '.join(cmd)}")
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        print(result.stdout)
+        if result.stderr:
+            print("STDERR:", result.stderr)
+        if result.returncode != 0:
+            print(f"Ошибка при выполнении сканирования (код возврата {result.returncode})")
+            print("Проверьте установку nmap и права доступа.")
+            return
+        
+        print("\nСканирование завершено. Данные сохранены в data/infrastructure.json")
+        # Предлагаем перечитать инфраструктуру (пересоздать InventoryManager при следующем вызове)
+        print("Чтобы использовать новые данные, при следующем запуске инвентаризации они загрузятся автоматически.")
+        
+    except FileNotFoundError:
+        print("Ошибка: не удалось запустить Python. Убедитесь, что Python установлен корректно.")
+    except Exception as e:
+        print(f"Непредвиденная ошибка: {e}")
+
+
 def main_menu():
     """Главное меню программы"""
     while True:
@@ -77,6 +124,8 @@ def main_menu():
         print("10. Сформировать отчет по этапу 4 (MFA)")
         print("11. Сформировать отчет по этапу 5 (Мониторинг)")
         print("12. Сформировать полный отчет (все этапы + RZT)")
+        print("-" * 40)
+        print("13. Сканировать сеть через Nmap и импортировать устройства")
         print("0. Выход")
         
         choice = input("\nВыберите действие: ").strip()
@@ -98,12 +147,13 @@ def main_menu():
             execute_monitoring_analysis()
         elif choice == "6":
             show_zti_analysis()
-        elif choice in ["7", "8", "9", "10", "11"]:
+        elif choice in ["7", "8", "9", "10", "11", "12"]:
             generate_report(choice)
-        elif choice == "12":
-            generate_report(choice)
+        elif choice == "13":
+            execute_nmap_scan()
         else:
             print("Функционал в разработке...")
+
 
 def execute_encryption_analysis():
     """Выполнить анализ шифрования (Этап 2)"""
@@ -135,6 +185,7 @@ def execute_encryption_analysis():
     print("Для получения детального отчета выберите пункт 7 в главном меню")
     print("="*60)
 
+
 def execute_segmentation_analysis():
     """Выполнить анализ сегментации (Этап 3)"""
     print("\n" + "="*80)
@@ -164,6 +215,7 @@ def execute_segmentation_analysis():
     print("АНАЛИЗ ЗАВЕРШЕН!")
     print("Для получения детального отчета выберите пункт 8 в главном меню")
     print("="*80)
+
 
 def execute_mfa_analysis():
     """Выполнить анализ MFA (Этап 4)"""
@@ -275,10 +327,11 @@ def generate_report(report_type: str):
     print("ОТЧЕТ ГОТОВ!")
     print("="*60)
 
+
 def execute_monitoring_analysis():
     """Выполнить анализ системы мониторинга (Этап 5)"""
     print("\n" + "="*80)
-    print("ЗАПУСК ЭТАПА 5: АНАЛИЗ И ПЛНИРОВАНИЕ СИСТЕМЫ МОНИТОРИНГА И ПОДДЕРЖКИ")
+    print("ЗАПУСК ЭТАПА 5: АНАЛИЗ И ПЛАНИРОВАНИЕ СИСТЕМЫ МОНИТОРИНГА И ПОДДЕРЖКИ")
     print("="*80)
     
     # Загружаем текущую инфраструктуру
@@ -305,6 +358,7 @@ def execute_monitoring_analysis():
     print("Для получения детального отчета выберите пункт 10 в главном меню")
     print("="*80)
 
+
 def main():
     """Основная функция программы"""
     try:
@@ -318,6 +372,7 @@ def main():
         import traceback
         traceback.print_exc()
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "type": "IP-камера",
+  "category": "Безопасность",
+  "manufacturer": "Hikvision",
+  "model": "Unknown",
+  "ip": "192.168.1.101",
+  "ports": [80, 554, 8000],
+  "protocols": ["HTTP", "RTSP"],
+  "encryption": false,
+  "kii_category": 0,
+  "uses_domestic_algorithm": false,
+  "can_change_protocols": "неизвестно",
+  "compute_power": "неизвестно",
+  "memory": "неизвестно",
+  "data_volume": "неизвестно",
+  "interaction_group": "default",
+  "physical_access": true,
+  "critical": false,
+  "added_from_catalog": false,
+  "added_at": "2026-04-15T10:00:00",
+  "risk_level": "medium"
+}
+

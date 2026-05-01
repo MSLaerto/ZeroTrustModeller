@@ -1,0 +1,22 @@
+<host>
+  <status state="up" />
+  <address addr="192.168.1.101" addrtype="ipv4" />
+  <ports>
+    <port portid="80" protocol="tcp">
+      <state state="open" />
+      <service name="http" product="Hikvision web server" version="3.0" />
+    </port>
+    <port portid="554" protocol="tcp">
+      <state state="open" />
+      <service name="rtsp" product="Hikvision RTSP" version="1.0" />
+    </port>
+    <port portid="8000" protocol="tcp">
+      <state state="open" />
+      <service name="hikvision" product="Hikvision DVR" />
+    </port>
+  </ports>
+  <os>
+    <osmatch name="Linux 3.x – 4.x" />
+  </os>
+</host>
+
